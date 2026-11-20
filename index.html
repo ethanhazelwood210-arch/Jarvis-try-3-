@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="JARVIS AI Assistant — a responsive voice-enabled personal command dashboard.">
+  <title>JARVIS AI Assistant</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="JARVIS home">
+        <span class="brand-mark">J</span><span><strong>J.A.R.V.I.S</strong><small>PERSONAL INTERFACE</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-view="dashboard"><span>⌂</span> Dashboard</button>
+        <button class="nav-item" data-view="assistant"><span>◉</span> Assistant</button>
+        <button class="nav-item" data-view="tools"><span>⌘</span> Quick tools</button>
+        <button class="nav-item" data-view="settings"><span>⚙</span> Settings</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="connection"><i class="status-dot"></i><span><b>LOCAL SYSTEM</b><small id="connectionText">Interface ready</small></span></div>
+        <p class="side-version">JARVIS UI · v1.0.0</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-button menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <div class="breadcrumb">WORKSPACE <span>/</span> <b id="pageName">DASHBOARD</b></div>
+        <div class="top-actions">
+          <span class="clock" id="clock">--:--:--</span>
+          <button class="avatar" id="profileButton" title="Profile">U</button>
+        </div>
+      </header>
+
+      <section class="view active" id="dashboardView">
+        <div class="welcome-row">
+          <div><p class="eyebrow">PERSONAL COMMAND CENTRE</p><h1>Good day. <span class="gradient-text">How can I help?</span></h1><p class="subheading">Your interface is ready. Give a command or choose a tool below.</p></div>
+          <div class="date-pill" id="datePill">TODAY</div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div>
+          <div class="hero-content">
+            <div class="hero-tag"><i class="status-dot"></i> JARVIS SYSTEM ONLINE</div>
+            <h2>Your assistant.<br><span class="gradient-text">Your command.</span></h2>
+            <p>Use your voice or type a request. Try “what time is it”, “open tools”, or “help”.</p>
+            <button class="primary-button" id="heroStart"><span>◉</span> TALK TO JARVIS</button>
+          </div>
+          <div class="core-visual" aria-hidden="true"><div class="core-ring ring-1"></div><div class="core-ring ring-2"></div><div class="core-ring ring-3"></div><div class="core-center">J</div><div class="core-spark spark-1"></div><div class="core-spark spark-2"></div></div>
+        </div>
+
+        <div class="section-heading"><div><p class="eyebrow">AT A GLANCE</p><h2>System overview</h2></div><span class="live-label"><i class="status-dot"></i> LIVE</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon">◷</span><small>LOCAL TIME</small><strong id="timeStat">--:--</strong><em>Device clock</em></article>
+          <article class="stat-card"><span class="stat-icon">◉</span><small>VOICE INPUT</small><strong id="voiceStat">CHECKING</strong><em>Browser capability</em></article>
+          <article class="stat-card"><span class="stat-icon">⌁</span><small>SESSION</small><strong>ACTIVE</strong><em>Running in this tab</em></article>
+          <article class="stat-card"><span class="stat-icon">◇</span><small>MODE</small><strong>LOCAL</strong><em>No account required</em></article>
+        </div>
+
+        <div class="section-heading tools-heading"><div><p class="eyebrow">GET THINGS DONE</p><h2>Quick actions</h2></div></div>
+        <div class="quick-grid">
+          <button class="quick-card" data-action="time"><span>◷</span><b>Time & date</b><small>Check your local time</small></button>
+          <button class="quick-card" data-action="calculator"><span>＋</span><b>Calculator</b><small>Do a quick calculation</small></button>
+          <button class="quick-card" data-action="notes"><span>▤</span><b>Quick notes</b><small>Save a note in this browser</small></button>
+          <button class="quick-card" data-action="help"><span>⌘</span><b>Command help</b><small>See what JARVIS can do</small></button>
+        </div>
+      </section>
+
+      <section class="view" id="assistantView">
+        <div class="view-heading"><p class="eyebrow">NATURAL INTERACTION</p><h1>Assistant <span class="gradient-text">console</span></h1><p class="subheading">Speak or type. The built-in demo understands a set of local commands.</p></div>
+        <div class="chat-panel">
+          <div class="chat-top"><div><i class="status-dot"></i><b>JARVIS CONSOLE</b><small>LOCAL COMMAND MODE</small></div><button class="text-button" id="clearChat">Clear conversation</button></div>
+          <div class="messages" id="messages" aria-live="polite">
+            <div class="message assistant-message"><div class="message-avatar">J</div><div><span class="message-name">JARVIS</span><p>Systems online. What would you like me to do?</p><small>Just now</small></div></div>
+          </div>
+          <div class="suggestions"><button data-prompt="What time is it?">What time is it?</button><button data-prompt="Open quick tools">Open quick tools</button><button data-prompt="Help">Help</button></div>
+          <form class="composer" id="chatForm"><input id="chatInput" autocomplete="off" placeholder="Type a command for JARVIS..." aria-label="Message JARVIS"><button type="button" class="mic-button" id="micButton" aria-label="Start voice input">🎙</button><button class="send-button" type="submit" aria-label="Send message">➤</button></form>
+          <p class="privacy-hint">Voice recognition is handled by your browser's speech service when available. This demo does not continuously listen.</p>
+        </div>
+      </section>
+
+      <section class="view" id="toolsView">
+        <div class="view-heading"><p class="eyebrow">BUILT-IN UTILITIES</p><h1>Quick <span class="gradient-text">tools</span></h1><p class="subheading">Small useful tools that run locally in your browser.</p></div>
+        <div class="tool-layout">
+          <article class="tool-panel"><div class="tool-title"><span>＋</span><div><h3>Calculator</h3><small>Basic arithmetic</small></div></div><input id="calcInput" class="tool-input" inputmode="decimal" placeholder="Example: (12 + 8) * 3"><button class="primary-button full-button" id="calculateButton">Calculate</button><div class="tool-result" id="calcResult">Your result will appear here.</div></article>
+          <article class="tool-panel"><div class="tool-title"><span>▤</span><div><h3>Quick notes</h3><small>Saved in this browser only</small></div></div><textarea id="noteInput" class="tool-input note-input" placeholder="Write a note..."></textarea><div class="button-row"><button class="primary-button" id="saveNote">Save note</button><button class="secondary-button" id="clearNote">Clear</button></div><div class="tool-result" id="noteStatus">No changes yet.</div></article>
+          <article class="tool-panel wide-panel"><div class="tool-title"><span>⌁</span><div><h3>Focus timer</h3><small>Simple 25-minute focus session</small></div></div><div class="timer-display" id="timerDisplay">25:00</div><div class="button-row"><button class="primary-button" id="timerStart">Start</button><button class="secondary-button" id="timerReset">Reset</button></div><small class="tool-footnote">Keep this tab open while the timer runs.</small></article>
+        </div>
+      </section>
+
+      <section class="view" id="settingsView">
+        <div class="view-heading"><p class="eyebrow">PERSONALISE YOUR INTERFACE</p><h1>System <span class="gradient-text">settings</span></h1><p class="subheading">Control local interface preferences and browser permissions.</p></div>
+        <div class="settings-panel">
+          <div class="setting-row"><div><b>Voice responses</b><small>Read assistant replies aloud when supported.</small></div><label class="switch"><input type="checkbox" id="speechToggle" checked><span></span></label></div>
+          <div class="setting-row"><div><b>Compact interface</b><small>Reduce spacing across the dashboard.</small></div><label class="switch"><input type="checkbox" id="compactToggle"><span></span></label></div>
+          <div class="setting-row"><div><b>Microphone access</b><small>Voice input requires browser permission and speech recognition support.</small></div><button class="secondary-button" id="micPermissionInfo">Check support</button></div>
+          <div class="setting-row"><div><b>Notifications</b><small>Optional browser notifications; permission is requested only when you enable them.</small></div><button class="secondary-button" id="enableNotifications">Enable</button></div>
+          <div class="setting-row"><div><b>Clear local data</b><small>Remove notes saved by this demo from this browser.</small></div><button class="danger-button" id="clearData">Clear data</button></div>
+        </div>
+        <p class="settings-disclaimer">JARVIS UI is a local demo assistant. It cannot access arbitrary apps, files, accounts, or device controls. External AI capabilities require a securely configured backend.</p>
+      </section>
+
+      <footer class="footer"><span>J.A.R.V.I.S · PERSONAL INTERFACE</span><span>DESIGNED FOR YOUR DEVICE</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
